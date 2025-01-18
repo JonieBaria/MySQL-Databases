@@ -1,0 +1,84 @@
+Key Takeaways
+=============
+
+WHERE	Filters data before aggregation
+GROUP BY	Groups rows based on a column
+HAVING	Filters grouped data after aggregation
+ORDER BY	Sorts the result set
+
+
+1. WHERE Clause
+
+Example: Filter customers from the USA
+
+SELECT * FROM customers 
+WHERE country = 'USA';
+
+Example: Filter products with price greater than 100
+
+SELECT * FROM products 
+WHERE price > 100;
+
+
+
+2. GROUP BY Clause
+
+Example: Count customers by country
+
+SELECT country, COUNT(*) AS customer_count
+FROM customers
+GROUP BY country;
+
+Example: Total sales per product
+
+SELECT product_id, SUM(sales) AS total_sales
+FROM orders
+GROUP BY product_id;
+
+
+3. HAVING Clause
+Used to filter results after GROUP BY (since WHERE doesn’t work with aggregates).
+
+Example: Show countries with more than 5 customers
+
+SELECT country, COUNT(*) AS customer_count
+FROM customers
+GROUP BY country
+HAVING customer_count > 5;
+
+Example: Show products with total sales above $5000
+
+SELECT product_id, SUM(sales) AS total_sales
+FROM orders
+GROUP BY product_id
+HAVING total_sales > 5000;
+
+4. ORDER BY Clause
+Used to sort results in ascending (ASC, default) or descending (DESC) order.
+
+Example: Order customers by name (A to Z)
+
+SELECT * FROM customers 
+ORDER BY name ASC;
+
+Example: Show top-selling products (highest to lowest)
+
+SELECT product_id, SUM(sales) AS total_sales
+FROM orders
+GROUP BY product_id
+ORDER BY total_sales DESC;
+
+
+Combining All Clauses
+You can combine WHERE, GROUP BY, HAVING, and ORDER BY in a single query.
+
+Example: Find USA-based products that sold over $5000 and sort by total sales (highest first)
+
+SELECT product_id, SUM(sales) AS total_sales
+FROM orders
+WHERE country = 'USA'
+GROUP BY product_id
+HAVING total_sales > 5000
+ORDER BY total_sales DESC;
+
+
