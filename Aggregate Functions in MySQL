@@ -1,0 +1,101 @@
+COUNT()	Counts the number of rows
+SUM()	Adds up numerical values
+AVG()	Calculates the average of values
+MIN()	Finds the smallest value
+MAX()	Finds the largest value
+
+1. COUNT() – Count Rows
+
+Example: Count total customers
+
+SELECT COUNT(*) AS total_customers FROM customers;
+
+Example: Count customers from the USA
+
+SELECT COUNT(*) AS usa_customers 
+FROM customers 
+WHERE country = 'USA';
+
+2. SUM() – Total Sum
+The SUM() function calculates the total sum of a column.
+
+Example: Total sales for all orders
+
+SELECT SUM(sales) AS total_sales FROM orders;
+
+Example: Total sales per product
+
+SELECT product_id, SUM(sales) AS total_sales
+FROM orders
+GROUP BY product_id;
+
+3. AVG() – Average Value
+The AVG() function calculates the average value of a column.
+
+Example: Average order 
+
+SELECT AVG(sales) AS avg_order_amount FROM orders;
+
+Example: Average salary per department
+SELECT department, AVG(salary) AS avg_salary
+FROM employees
+GROUP BY department;
+
+4. MIN() – Minimum Value
+The MIN() function finds the smallest value in a column.
+
+Example: Find the lowest product price
+
+SELECT MIN(price) AS lowest_price FROM products;
+
+Example: Find the lowest salary per department
+
+SELECT department, MIN(salary) AS lowest_salary
+FROM employees
+GROUP BY department;
+
+
+5. MAX() – Maximum Value
+The MAX() function finds the largest value in a column.
+
+Example: Find the highest product price
+
+SELECT MAX(price) AS highest_price FROM products;
+
+Example: Find the highest salary per department
+
+SELECT department, MAX(salary) AS highest_salary
+FROM employees
+GROUP BY department;
+
+
+
+Combining Aggregate Functions
+You can use multiple aggregate functions in a single query.
+
+Example: Show total, average, min, and max sales
+
+
+SELECT 
+    SUM(sales) AS total_sales,
+    AVG(sales) AS avg_sales,
+    MIN(sales) AS min_sales,
+    MAX(sales) AS max_sales
+FROM orders;
+
+
+Using Aggregate Functions with HAVING
+The HAVING clause filters aggregated results after GROUP BY.
+
+Example: Show only products with total sales over $10,000
+
+SELECT product_id, SUM(sales) AS total_sales
+FROM orders
+GROUP BY product_id
+HAVING total_sales > 10000;
+
+
+
+
+
+
