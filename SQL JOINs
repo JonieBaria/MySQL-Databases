@@ -1,0 +1,51 @@
+SQL JOINs Explained
+===================
+A JOIN is used to combine rows from two or more tables based on a related column. The most common types of joins are:
+
+INNER JOIN	Returns only matching rows from both tables
+LEFT JOIN	Returns all rows from the left table and matching rows from the right table
+RIGHT JOIN	Returns all rows from the right table and matching rows from the left table
+FULL OUTER JOIN	Returns all rows when there is a match in either table (MySQL does not support FULL JOIN directly)
+
+1. INNER JOIN – Only Matching Rows
+Returns only rows that have matches in both tables.
+
+SELECT customers.name, orders.order_id, orders.amount
+FROM customers
+INNER JOIN orders ON customers.customer_id = orders.customer_id;
+
+
+2. LEFT JOIN – All from Left, Matching from Right
+Returns all rows from the left table and matching rows from the right table. If no match, NULL values are returned.
+
+SELECT customers.name, orders.order_id, orders.amount
+FROM customers
+LEFT JOIN orders ON customers.customer_id = orders.customer_id;
+
+
+3. RIGHT JOIN – All from Right, Matching from Left
+Returns all rows from the right table and matching rows from the left table. If no match, NULL values are returned.
+
+SELECT customers.name, orders.order_id, orders.amount
+FROM customers
+RIGHT JOIN orders ON customers.customer_id = orders.customer_id;
+
+
+
+4. FULL OUTER JOIN – All from Both Tables
+Returns all rows from both tables, filling in NULL for missing matches.
+
+⚠️ MySQL does not support FULL OUTER JOIN directly. However, you can simulate it using UNION.
+
+SELECT customers.name, orders.order_id, orders.amount
+FROM customers
+LEFT JOIN orders ON customers.customer_id = orders.customer_id
+
+UNION
+
+SELECT customers.name, orders.order_id, orders.amount
+FROM customers
+RIGHT JOIN orders ON customers.customer_id = orders.customer_id;
+
+
+
