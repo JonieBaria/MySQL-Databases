@@ -1,0 +1,31 @@
+CROSS JOIN & SELF JOIN in MySQL
+1. CROSS JOIN – Cartesian Product
+A CROSS JOIN returns the Cartesian product of two tables.
+
+It combines each row from the first table with every row from the second table.
+No condition (ON clause) is needed.
+Example: CROSS JOIN Without Condition
+
+SELECT customers.name, products.product_name
+FROM customers 
+CROSS JOIN products;
+If customers has 3 rows and products has 4 rows, the result will have:
+👉 3 × 4 = 12 rows (all possible combinations).
+
+2. SELF JOIN – Joining a Table to Itself
+A SELF JOIN is when a table is joined with itself to compare its rows.
+
+Example: Find Employees and Their Managers
+
+SELECT emp1.name AS employee, emp2.name AS manager
+FROM employees emp1
+JOIN employees emp2 ON emp1.manager_id = emp2.id;
+emp1 represents employees.
+emp2 represents their managers.
+✅ This helps when data is hierarchical (like employees reporting to managers).
+
+Key Differences
+
+CROSS JOIN	Returns all possible row combinations	Creating test datasets, permutations
+SELF JOIN	Joins a table with itself	Employee-manager relationships
+Would you like more advanced SQL join examples? 🚀
